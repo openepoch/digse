@@ -1,0 +1,15 @@
+[package]
+name = "digse-http"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+reqwest = { workspace = true }
+tokio = { workspace = true }
+governor = { workspace = true }
+moka = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

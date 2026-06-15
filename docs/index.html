@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>digse — Dig Search Engines</title>
+<meta name="description" content="digse — a lightweight, privacy-focused metasearch engine CLI in Rust. 238 engines, structured JSON, local HTTP API, cross-platform daemon, boot autostart with no admin.">
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --text: #c9d1d9; --muted: #8b949e; --accent: #58a6ff; --green: #3fb950;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 64px 0 32px; text-align: center; }
+  h1 { font-size: 3rem; margin: 0; letter-spacing: -1px; }
+  h1 .accent { color: var(--accent); }
+  .tag { color: var(--muted); font-size: 1.2rem; margin-top: 8px; }
+  section { padding: 32px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 1.5rem; margin-top: 0; }
+  .os-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .os-tabs button {
+    background: var(--panel); color: var(--muted); border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.95rem;
+  }
+  .os-tabs button.active { color: var(--text); border-color: var(--accent); }
+  .codeblock {
+    position: relative; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 64px 16px 16px; overflow-x: auto;
+  }
+  .codeblock pre { margin: 0; font-family: var(--mono); font-size: 0.9rem; white-space: pre-wrap; word-break: break-all; }
+  .copy {
+    position: absolute; top: 10px; right: 10px; background: var(--bg); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; cursor: pointer; font-size: 0.8rem;
+  }
+  .copy:hover { color: var(--text); }
+  .copy.copied { color: var(--green); border-color: var(--green); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .card h3 { margin: 0 0 4px; font-size: 1rem; }
+  .card .arch { color: var(--muted); font-family: var(--mono); font-size: 0.78rem; margin-bottom: 8px; word-break: break-all; }
+  .card a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+  .card a:hover { text-decoration: underline; }
+  ul.features { columns: 2; column-gap: 40px; padding-left: 20px; }
+  ul.features li { margin-bottom: 6px; break-inside: avoid; }
+  @media (max-width: 600px) { ul.features { columns: 1; } h1 { font-size: 2.2rem; } }
+  .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .links a { color: var(--accent); text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .note { color: var(--muted); font-size: 0.9rem; }
+  .note a { color: var(--accent); }
+  code.inline { background: var(--panel); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; font-family: var(--mono); font-size: 0.85em; }
+  footer { padding: 32px 0 48px; text-align: center; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>dig<span class="accent">se</span></h1>
+    <div class="tag">Dig Search Engines — a lightweight, privacy-focused metasearch engine CLI in Rust.</div>
+  </header>
+
+  <section>
+    <h2>Install</h2>
+    <p class="note">One command. No build step. No admin or sudo required.</p>
+    <div class="os-tabs">
+      <button class="active" data-os="unix">Linux / macOS</button>
+      <button data-os="windows">Windows</button>
+    </div>
+
+    <div class="panel active" id="panel-unix">
+      <div class="codeblock">
+        <button class="copy" data-target="cmd-unix" type="button">copy</button>
+        <pre id="cmd-unix">curl -fsSL https://raw.githubusercontent.com/openepoch/digse/main/docs/install.sh | sh</pre>
+      </div>
+      <p class="note">Installs <code class="inline">digse</code> into <code class="inline">~/.local/bin</code>. <a href="./install.sh">view the script</a> · <a href="https://github.com/openepoch/digse/blob/main/docs/install.sh">source</a></p>
+    </div>
+
+    <div class="panel" id="panel-windows">
+      <div class="codeblock">
+        <button class="copy" data-target="cmd-windows" type="button">copy</button>
+        <pre id="cmd-windows">irm https://raw.githubusercontent.com/openepoch/digse/main/docs/install.ps1 | iex</pre>
+      </div>
+      <p class="note">Installs <code class="inline">digse</code> into <code class="inline">%LOCALAPPDATA%\digse</code> and adds it to your user PATH. <a href="./install.ps1">view the script</a> · <a href="https://github.com/openepoch/digse/blob/main/docs/install.ps1">source</a></p>
+    </div>
+    <p class="note" style="margin-top:14px">Install a specific version: set <code class="inline">VERSION=v0.2.0</code> (sh) or <code class="inline">$env:DIGSE_VERSION="v0.2.0"</code> (PowerShell) before the pipe.</p>
+  </section>
+
+  <section>
+    <h2>Direct download</h2>
+    <p class="note">Prebuilt binaries for each platform, from the <a href="https://github.com/openepoch/digse/releases/latest">latest release</a>.</p>
+    <div class="grid">
+      <div class="card"><h3>Linux x86_64</h3><div class="arch">x86_64-unknown-linux-gnu</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
+      <div class="card"><h3>Linux ARM64</h3><div class="arch">aarch64-unknown-linux-gnu</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
+      <div class="card"><h3>macOS Intel</h3><div class="arch">x86_64-apple-darwin</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
+      <div class="card"><h3>macOS Apple Silicon</h3><div class="arch">aarch64-apple-darwin</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
+      <div class="card"><h3>Windows x64</h3><div class="arch">x86_64-pc-windows-msvc</div><a href="https://github.com/openepoch/digse/releases/latest">download .zip →</a></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Run it</h2>
+    <div class="codeblock"><pre>digse version          # digse 0.1.0  (target: linux-x86_64)
+digse start            # start the local daemon at http://127.0.0.1:8888
+digse ps               # is it running? (prints pid + url)
+digse stop             # stop it
+digse startup add      # start at boot (systemd on Linux, Run key on Windows)</pre></div>
+    <p class="note">Then open <code class="inline">http://127.0.0.1:8888</code> for the search UI, or query <code class="inline">/search?q=...</code> for JSON. <code class="inline">digse startup add</code> needs no administrator privileges on any platform.</p>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <ul class="features">
+      <li>238 engines across 12 categories</li>
+      <li>Structured JSON output, always</li>
+      <li>Local HTTP API + HTML search UI</li>
+      <li>Persisted config (~/.digse/config.toml)</li>
+      <li>14 result types (web, images, videos…)</li>
+      <li>URL-based filetype/include/exclude filters</li>
+      <li>Engine selection, concurrency, rate limiting</li>
+      <li>Cross-platform daemon (Linux, macOS, Windows)</li>
+      <li>Boot autostart, no admin</li>
+      <li>Usable as a Rust library</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Links</h2>
+    <div class="links">
+      <a href="https://github.com/openepoch/digse">source code</a>
+      <a href="https://github.com/openepoch/digse/releases">releases</a>
+      <a href="https://github.com/openepoch/digse/blob/main/README.md">README</a>
+      <a href="https://github.com/openepoch/digse/issues">issues</a>
+    </div>
+  </section>
+
+  <footer>
+    digse is licensed under MIT OR Apache-2.0. Requests go directly from your machine to each engine — no tracking, no JavaScript.
+  </footer>
+</div>
+
+<script>
+  // OS tab switching.
+  document.querySelectorAll('.os-tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.os-tabs button').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.os).classList.add('active');
+    });
+  });
+  // Copy-to-clipboard for the install one-liners.
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = document.getElementById(btn.dataset.target).textContent;
+      function flash(label) { btn.textContent = label; btn.classList.add('copied'); setTimeout(function () { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 1400); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { flash('copied!'); }, function () { flash('Ctrl+C'); });
+      } else {
+        flash('Ctrl+C');
+      }
+    });
+  });
+</script>
+</body>
+</html>

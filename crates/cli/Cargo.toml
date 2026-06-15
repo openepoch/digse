@@ -1,0 +1,46 @@
+[package]
+name = "digse"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[lib]
+name = "digse"
+path = "src/lib.rs"
+
+[[bin]]
+name = "digse"
+path = "src/main.rs"
+
+[dependencies]
+digse-core = { path = "../core" }
+digse-engines = { path = "../engines" }
+digse-http = { path = "../http" }
+digse-parser = { path = "../parser" }
+
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }
+chrono = { workspace = true }
+urlencoding = "2.1"
+
+# OS-specific dependencies. Kept under target cfgs so a Linux/macOS build never
+# pulls in the Windows crates (and vice-versa).
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_System_Threading",
+] }

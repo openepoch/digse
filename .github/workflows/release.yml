@@ -1,0 +1,77 @@
+# Build per-platform release binaries and attach them to the GitHub release
+# whenever a `v*` tag is pushed. Asset names are the contract the install
+# scripts in docs/ rely on: `digse-<target-triple>.tar.gz` (unix) /
+# `digse-<target-triple>.zip` (windows).
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+# softprops/action-gh-release needs to create/upload release assets.
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            archive: tar.gz
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            archive: tar.gz
+          - runner: macos-13
+            target: x86_64-apple-darwin
+            archive: tar.gz
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            archive: tar.gz
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            archive: zip
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain + target
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          target: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Build release binary
+        run: cargo build --release -p digse --target ${{ matrix.target }}
+
+      # Strip debug symbols on Linux only. macOS binaries are ad-hoc code-signed
+      # by the toolchain; stripping would invalidate the signature and cause
+      # "killed: 9" on first launch. Windows MSVC objects don't use `strip`.
+      - name: Strip binary
+        if: runner.os == 'Linux'
+        run: strip target/${{ matrix.target }}/release/digse
+
+      - name: Package (unix)
+        if: matrix.archive != 'zip'
+        run: |
+          cd target/${{ matrix.target }}/release
+          tar -czf ../../../digse-${{ matrix.target }}.tar.gz digse
+
+      - name: Package (windows)
+        if: matrix.archive == 'zip'
+        shell: pwsh
+        run: |
+          Compress-Archive -Path target/${{ matrix.target }}/release/digse.exe -DestinationPath digse-${{ matrix.target }}.zip
+
+      - name: Upload asset to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: digse-${{ matrix.target }}.${{ matrix.archive }}

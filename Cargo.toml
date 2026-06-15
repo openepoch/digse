@@ -1,0 +1,65 @@
+[workspace]
+members = [
+    "crates/core",
+    "crates/engines",
+    "crates/http",
+    "crates/parser",
+    "crates/cli",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["digse contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/digse/digse"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "cookies", "gzip"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+
+# HTML parsing
+scraper = "0.18"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging and verbosity
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+log = "0.4"
+env_logger = "0.11"
+
+# Performance monitoring (for profiling)
+hdrhistogram = "7.5"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Rate limiting
+governor = "0.6"
+
+# Caching
+moka = { version = "0.12", features = ["future"] }
+
+# Configuration
+config = "0.14"
+
+# URL parsing
+url = "2.5"
+
+# Async traits
+async-trait = "0.1"

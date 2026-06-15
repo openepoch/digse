@@ -1,0 +1,43 @@
+# Rust
+/target
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build
+/dist
+/build
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+
+# Cache
+.cache/
+
+# Testing
+coverage/
+*.profraw
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Project specific
+.claude/
