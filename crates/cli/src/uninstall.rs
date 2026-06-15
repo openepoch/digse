@@ -122,38 +122,9 @@ pub fn remove_daemon_and_state() -> Result<(), Box<dyn std::error::Error>> {
 pub fn remove_binary() -> Result<(), Box<dyn std::error::Error>> {
     let bin_path = std::env::current_exe()?;
 
-    #[cfg(windows)]
-    {
-        // On Windows, self_replace can do in-place replacement
-        self_replace::self_delete()?;
-        println!("Removed binary: {}", bin_path.display());
-    }
-
-    #[cfg(unix)]
-    {
-        // On Unix, we need to spawn a shell script to delete after exit
-        let script = format!(
-            "#!/bin/sh\nsleep 0.5\nrm - '{}'\n",
-            bin_path.display()
-        );
-
-        let temp_script = std::env::temp_dir()
-            .join(format!("digse-uninstall-{}.sh", std::process::id()));
-
-        std::fs::write(&temp_script, script)?;
-
-        // Make executable
-        use std::os::unix::fs::PermissionsExt;
-        let mut perms = std::fs::metadata(&temp_script)?.permissions();
-        perms.set_mode(0o755);
-        std::fs::set_permissions(&temp_script, perms)?;
-
-        // Spawn detached script to delete after we exit
-        let _ = std::process::Command::new(&temp_script)
-            .spawn();
-
-        println!("Binary will be removed shortly: {}", bin_path.display());
-    }
+    // self_replace handles self-deletion on all platforms (Windows, Linux, macOS)
+    self_replace::self_delete()?;
+    println!("Removed binary: {}", bin_path.display());
 
     Ok(())
 }
