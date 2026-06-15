@@ -227,7 +227,7 @@ outcome, and lists the results (each with a derived `domain`).
 
 ```json
 {
-  "digse": { "name": "digse", "version": "0.1.0", "generated_at": "2026-06-14T07:03:13Z" },
+  "digse": { "name": "digse", "version": "0.0.1", "generated_at": "2026-06-14T07:03:13Z" },
   "query": "what is rust",
   "result_type": "web",
   "request": { "query": "what is rust", "result_type": "web", "count": 10, "offset": 0, "timeout_seconds": 5, "language": null, "time_range": null, "safe_search": false },
@@ -288,7 +288,7 @@ digse/
 
 ```toml
 [dependencies]
-digse = "0.1"
+digse = "0.0.1"
 ```
 
 ```rust

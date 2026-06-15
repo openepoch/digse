@@ -43,7 +43,7 @@ impl SogouImagesEngine {
         let resp = self
             .client
             .get(format!("{}/pics", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("query", query.query.as_str()),
                 ("start", start_str.as_str()),

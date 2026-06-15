@@ -131,7 +131,7 @@ impl PinterestEngine {
         let resp = self
             .client
             .get(format!("{}/resource/BaseSearchResource/get/", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .header("X-Pinterest-AppState", "active")
             .header("X-Pinterest-Source-Url", "/ideas/")

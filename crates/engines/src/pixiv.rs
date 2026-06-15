@@ -109,7 +109,7 @@ impl PixivEngine {
         let resp = self
             .client
             .get(format!("{}/{}", base_url, query.query))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .header("Referer", "https://www.pixiv.net/")
             .query(&[

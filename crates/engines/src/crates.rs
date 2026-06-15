@@ -71,7 +71,7 @@ impl CratesEngine {
         let resp = self
             .client
             .get(url)
-            .header("User-Agent", "digse/0.1.0 (https://github.com/digse)")
+            .header("User-Agent", "digse/0.0.1 (https://github.com/digse)")
             .header("Accept", "application/json")
             .query(&[
                 ("page", page.as_str()),

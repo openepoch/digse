@@ -94,7 +94,7 @@ impl AppleMapsEngine {
         // Step 1: get a temp token from duckduckgo
         let tmp = self.client
             .get("https://duckduckgo.com/local.js?get_mk_token=1")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?
@@ -105,7 +105,7 @@ impl AppleMapsEngine {
         // Step 2: exchange it for a real access token
         let resp = self.client
             .get("https://cdn.apple-mapkit.com/ma/bootstrap?apiVersion=2&mkjsVersion=5.72.53&poi=1")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Authorization", format!("Bearer {}", tmp.trim()))
             .send()
             .await
@@ -142,7 +142,7 @@ impl AppleMapsEngine {
 
         let resp = self.client
             .get("https://api.apple-mapkit.com/v1/search")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .header("Authorization", format!("Bearer {}", token))
             .query(&[

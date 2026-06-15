@@ -97,7 +97,7 @@ impl TinEyeEngine {
         let resp = self
             .client
             .get(&endpoint)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Connection", "keep-alive")
             .query(&[("url", image_url), ("page", page.as_str())])
             .send()

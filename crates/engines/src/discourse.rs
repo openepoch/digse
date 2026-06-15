@@ -115,7 +115,7 @@ impl DiscourseEngine {
         let mut req = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json, text/javascript, */*; q=0.01")
             .header("X-Requested-With", "XMLHttpRequest")
             .query(&[("q", q.as_str()), ("page", page.as_str())]);

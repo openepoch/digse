@@ -75,7 +75,7 @@ impl YacyEngine {
         let mut req = self
             .client
             .get(format!("{}/yacysearch.json", base))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("query", query.query.as_str()),
                 ("startRecord", offset.as_str()),

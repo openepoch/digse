@@ -101,7 +101,7 @@ impl MediathekviewwebEngine {
         let response = self
             .client
             .post("https://mediathekviewweb.de/api/query")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Content-Type", "text/plain")
             .header("Accept", "application/json")
             .body(serde_json::to_vec(&body).unwrap_or_default())

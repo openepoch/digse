@@ -90,7 +90,7 @@ impl GitHubCodeEngine {
         let mut req = self
             .client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/vnd.github.text-match+json")
             .header("X-GitHub-Api-Version", "2022-11-28")
             .query(&[

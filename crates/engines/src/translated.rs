@@ -109,7 +109,7 @@ impl TranslatedEngine {
         let response = self
             .client
             .get(&request_url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .send()
             .await

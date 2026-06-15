@@ -48,7 +48,7 @@ impl StartpageEngine {
         let resp = self
             .client
             .get(format!("{}/", BASE_URL))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept-Language", "en-US,en;q=0.5")
             .send()
             .await
@@ -118,7 +118,7 @@ impl StartpageEngine {
         let resp = self
             .client
             .post(SEARCH_URL)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Origin", BASE_URL)
             .header("Referer", format!("{}/", BASE_URL))
             .form(&form)

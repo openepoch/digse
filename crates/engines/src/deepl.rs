@@ -90,7 +90,7 @@ impl DeeplEngine {
         let response = self
             .client
             .post(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .form(&[
                 ("auth_key", api_key.as_str()),

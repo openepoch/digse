@@ -125,7 +125,7 @@ impl DuckDuckGoWebEngine {
         let response = self
             .client
             .post(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Content-Type", "application/x-www-form-urlencoded")
             .form(&[("q", query.query.as_str()), ("kl", "us-en")])
             .send()

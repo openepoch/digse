@@ -43,7 +43,7 @@ impl WolframalphaNoapiEngine {
         let resp = self
             .client
             .get("https://www.wolframalpha.com/input/api/v1/code?ts=9999999999999999999")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -80,7 +80,7 @@ impl WolframalphaNoapiEngine {
         let resp = self
             .client
             .get(&search_url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Referer", referer.clone())
             .send()
             .await

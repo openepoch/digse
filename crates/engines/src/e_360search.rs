@@ -40,7 +40,7 @@ impl Search360Engine {
 
         let resp = self.client
             .get(format!("{}/s", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("pn", pageno.as_str()),
                 ("q", query.query.as_str()),

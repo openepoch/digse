@@ -50,7 +50,7 @@ impl ImgurEngine {
         let response = self
             .client
             .get(&url)
-            .header("User-Agent", "Mozilla/5.0 (digse/0.1.0)")
+            .header("User-Agent", "Mozilla/5.0 (digse/0.0.1)")
             .header("Accept", "text/html,application/xhtml+xml")
             .send()
             .await

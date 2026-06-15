@@ -56,7 +56,7 @@ impl AolEngine {
 
         let resp = self.client
             .get(format!("{}/aol/search", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("q", query.query.as_str()),
                 ("b", b.as_str()),

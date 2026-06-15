@@ -80,7 +80,7 @@ impl PubMedEngine {
 
         let response = self.client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("db", "pubmed"),
                 ("term", query.query.as_str()),
@@ -115,7 +115,7 @@ impl PubMedEngine {
 
         let response = self.client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("db", "pubmed"),
                 ("id", id_string.as_str()),

@@ -157,7 +157,7 @@ impl SoundCloudEngine {
         let home = self
             .client
             .get("https://soundcloud.com")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -170,7 +170,7 @@ impl SoundCloudEngine {
             let resp = match self
                 .client
                 .get(&url)
-                .header("User-Agent", "digse/0.1.0")
+                .header("User-Agent", "digse/0.0.1")
                 .send()
                 .await
             {
@@ -210,7 +210,7 @@ impl SoundCloudEngine {
         let resp = self
             .client
             .get(SEARCH_URL)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("q", query.query.as_str()),
                 ("offset", offset.as_str()),

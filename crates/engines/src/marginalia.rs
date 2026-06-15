@@ -85,7 +85,7 @@ impl MarginaliaEngine {
         let response = self
             .client
             .get(format!("{}/search", self.base_url).as_str())
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .header("API-Key", api_key)
             .query(&[

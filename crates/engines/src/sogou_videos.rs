@@ -77,7 +77,7 @@ impl SogouVideosEngine {
         let resp = self
             .client
             .get(&endpoint)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("page", page.as_str()),
                 ("pagesize", pagesize),

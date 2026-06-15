@@ -45,7 +45,7 @@ impl NiconicoEngine {
         let resp = self
             .client
             .get(format!("{}/search/{}", base_url, query.query))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[("page", page_str.as_str())])
             .send()
             .await

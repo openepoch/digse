@@ -84,7 +84,7 @@ impl SteamEngine {
         let resp = self
             .client
             .get(&endpoint)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .query(&[
                 ("term", query.query.as_str()),

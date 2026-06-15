@@ -73,7 +73,7 @@ impl BilibiliEngine {
         let resp = self
             .client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Referer", "https://www.bilibili.com/")
             .header("Accept", "application/json, text/javascript, */*; q=0.01")
             .query(&[

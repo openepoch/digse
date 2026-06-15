@@ -55,7 +55,7 @@ impl PublicDomainImageArchiveEngine {
         let resp = self
             .client
             .get(format!("{}/search/?q=", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -74,7 +74,7 @@ impl PublicDomainImageArchiveEngine {
         let resp2 = self
             .client
             .get(&config_url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -106,7 +106,7 @@ impl PublicDomainImageArchiveEngine {
         let resp = self
             .client
             .post(&api_url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
             .json(&body)

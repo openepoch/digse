@@ -43,7 +43,7 @@ impl SourceHutEngine {
         let resp = self
             .client
             .get(BASE_URL)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("search", query.query.as_str()),
                 ("page", page.as_str()),

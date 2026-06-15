@@ -46,7 +46,7 @@ impl TigerEngine {
         let entry = self
             .client
             .get(format!("{}/_internCode.aspx", BASE_URL))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -72,7 +72,7 @@ impl TigerEngine {
                 "{}/Services/Human.svc/Make?M1={}&M2={}&M3={}",
                 BASE_URL, num1, num2, num3
             ))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;
@@ -100,7 +100,7 @@ impl TigerEngine {
         let post_resp = self
             .client
             .post(format!("{}/_internCode.aspx", BASE_URL))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .form(&form)
             .send()
             .await
@@ -146,7 +146,7 @@ impl TigerEngine {
         let resp = self
             .client
             .get(format!("{}/Websuche", BASE_URL))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Cookie", format!("Tiger.ch={}", cookie_value))
             .query(&[("w", query.query.as_str()), ("page", page.as_str())])
             .send()

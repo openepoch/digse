@@ -138,7 +138,7 @@ impl SpringerEngine {
         let resp = self
             .client
             .get(BASE_URL)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .query(&[
                 ("api_key", api_key.as_str()),

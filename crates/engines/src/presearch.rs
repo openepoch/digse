@@ -46,7 +46,7 @@ impl PresearchEngine {
         let resp = self
             .client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header(
                 "Cookie",
                 "b=1; presearch_session=; use_local_search_results=false; use_safe_search=true",
@@ -88,7 +88,7 @@ impl PresearchEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .send()
             .await

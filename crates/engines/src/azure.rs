@@ -142,7 +142,7 @@ impl AzureEngine {
 
         let resp = self.client
             .post(endpoint)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Authorization", format!("Bearer {}", token))
             .header("Content-Type", "application/json")
             .json(&body)

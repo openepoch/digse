@@ -54,7 +54,7 @@ impl S1SearchEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("q", query.query.as_str()),
                 ("page", "1"),

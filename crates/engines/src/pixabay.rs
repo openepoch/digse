@@ -74,7 +74,7 @@ impl PixabayEngine {
         let response = self
             .client
             .get(&url)
-            .header("User-Agent", "Mozilla/5.0 (digse/0.1.0) Pixabay")
+            .header("User-Agent", "Mozilla/5.0 (digse/0.0.1) Pixabay")
             .header("Accept", "application/json")
             .header("x-bootstrap-cache-miss", "1")
             .header("x-fetch-bootstrap", "1")

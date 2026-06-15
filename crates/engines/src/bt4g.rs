@@ -44,7 +44,7 @@ impl Bt4gEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .map_err(|e| Error::HttpError(e.to_string()))?;

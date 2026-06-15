@@ -58,7 +58,7 @@ impl GeizhalsEngine {
         let response = self
             .client
             .get(format!("{}/", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "text/html,application/xhtml+xml")
             .query(&args)
             .send()

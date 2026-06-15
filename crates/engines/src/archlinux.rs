@@ -44,7 +44,7 @@ impl ArchlinuxEngine {
 
         let resp = self.client
             .get(&base_url)
-            .header("User-Agent", "digse/0.1.0 (compatible; digse)")
+            .header("User-Agent", "digse/0.0.1 (compatible; digse)")
             .query(&[
                 ("search", q.as_str()),
                 ("title", "Special:Search"),

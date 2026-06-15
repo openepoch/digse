@@ -115,7 +115,7 @@ impl DestatisEngine {
         let response = self
             .client
             .get(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept-Language", "de")
             .query(&[
                 ("templateQueryString", query.query.as_str()),

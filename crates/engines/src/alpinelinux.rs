@@ -41,7 +41,7 @@ impl AlpineLinuxEngine {
 
         let resp = self.client
             .get(format!("{}/packages", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("name", name.as_str()),
                 ("page", page.as_str()),

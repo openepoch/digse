@@ -54,7 +54,7 @@ impl SeekNinjaEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "text/event-stream")
             .query(&[
                 ("q", query.query.as_str()),
@@ -82,7 +82,7 @@ impl SeekNinjaEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .send()
             .await
             .ok()?;

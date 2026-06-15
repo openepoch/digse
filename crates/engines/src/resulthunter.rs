@@ -57,7 +57,7 @@ impl ResulthunterEngine {
                 ("search_type", search_type),
                 ("offset", offset_str.as_str()),
             ])
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "text/html,application/xhtml+xml")
             .header("Cookie", format!("safesearch={}", safe))
             .send()

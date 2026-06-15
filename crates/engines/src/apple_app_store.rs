@@ -60,7 +60,7 @@ impl AppleAppStoreEngine {
     async fn fetch_results(&self, query: &SearchQuery) -> Result<Vec<SearchResult>> {
         let resp = self.client
             .get("https://itunes.apple.com/search")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .query(&[
                 ("term", query.query.as_str()),

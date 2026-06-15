@@ -80,7 +80,7 @@ impl PodchaserEngine {
         let resp = self
             .client
             .get(format!("{}/podcasts", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/prs.podchaser.v2+json")
             .query(&[
                 ("filters[term]", query.query.as_str()),

@@ -88,7 +88,7 @@ impl GitLabEngine {
                 ("search", query.query.as_str()),
                 ("page", page_str.as_str()),
             ])
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .send()
             .await

@@ -40,7 +40,7 @@ impl AnsaEngine {
 
         let resp = self.client
             .get("https://www.ansa.it/ricerca/ansait/search.shtml")
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&[
                 ("any", query.query.as_str()),
                 ("start", start.as_str()),

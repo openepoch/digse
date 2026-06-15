@@ -80,7 +80,7 @@ impl ChatnoirEngine {
         let mut req = self
             .client
             .post(url)
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .header("Accept", "application/json")
             .json(&body);
         if let Some(key) = &self.api_key {

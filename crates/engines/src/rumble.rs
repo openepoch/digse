@@ -47,7 +47,7 @@ impl RumbleEngine {
         let resp = self
             .client
             .get(format!("{}/search/video", base_url))
-            .header("User-Agent", "digse/0.1.0")
+            .header("User-Agent", "digse/0.0.1")
             .query(&params)
             .send()
             .await

@@ -117,7 +117,7 @@ impl WikicommonsEngine {
         let resp = self
             .client
             .get(&url)
-            .header("User-Agent", "digse/0.1.0 (digse)")
+            .header("User-Agent", "digse/0.0.1 (digse)")
             .send()
             .await
             .map_err(|e| Error::HttpError(e.to_string()))?;
