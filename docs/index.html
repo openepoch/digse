@@ -113,6 +113,47 @@ digse startup add      # start at boot (systemd on Linux, Run key on Windows)</p
   </section>
 
   <section>
+    <h2>All Commands</h2>
+
+    <h3 style="margin-top:0;">Server Control</h3>
+    <div class="codeblock"><pre>digse start [--host HOST] [--port PORT]    # Start daemon (default: 127.0.0.1:8888)
+digse restart                                # Restart or start if stopped
+digse stop                                   # Stop running daemon
+digse ps                                     # Show status (pid + URL)</pre></div>
+
+    <h3>Version & Info</h3>
+    <div class="codeblock"><pre>digse version                               # Print version and build target
+digse --version                              # Short form (just version)</pre></div>
+
+    <h3>Boot Autostart</h3>
+    <div class="codeblock"><pre>digse startup status                        # Show autostart status
+digse startup add                           # Enable boot autostart (no admin needed)
+digse startup remove                        # Disable autostart</pre></div>
+    <p class="note">Linux uses systemd user service, Windows uses registry Run key.</p>
+
+    <h3>Configuration</h3>
+    <div class="codeblock"><pre>digse config path                           # Print config file path (~/.digse/config.toml)
+digse config show                            # Print full configuration as TOML
+digse config init                            # Write default config if missing
+digse config get serve.port                  # Get a config value by dotted key
+digse config set serve.port 9999            # Set and persist a config value</pre></div>
+
+    <h3>Engines & Categories</h3>
+    <div class="codeblock"><pre>digse list engines                          # List all search engines (206 total)
+digse list categories                       # List engine categories (12 total)</pre></div>
+
+    <h3>Uninstall</h3>
+    <div class="codeblock"><pre>digse uninstall                             # Remove binary, config, and autostart</pre></div>
+    <p class="note">The <code class="inline">uninstall</code> command removes the installed binary, configuration directory, and autostart entries, but does not affect the local repository if you built from source.</p>
+
+    <h3>Global Options</h3>
+    <div class="codeblock"><pre>-v, -vv, -vvv, -vvvv                       # Increase verbosity
+--quiet                                      # Minimal output
+-h, --help                                  # Print help
+-V, --version                               # Print version</pre></div>
+  </section>
+
+  <section>
     <h2>Features</h2>
     <ul class="features">
       <li>206 engines across 12 categories</li>
