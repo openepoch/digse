@@ -19,6 +19,7 @@ mod filters;
 mod pidfile;
 mod start;
 mod startup;
+mod uninstall;
 
 /// Digse - Dig Search Engines - A lightweight metasearch engine CLI
 #[derive(Parser, Debug)]
@@ -67,6 +68,9 @@ enum Command {
     /// List available engines or engine categories.
     #[command(subcommand)]
     List(ListCommand),
+
+    /// Uninstall digse completely (binary, config, autostart).
+    Uninstall,
 
     /// INTERNAL: foreground server entry point for the daemon re-exec.
     #[command(name = "__start_foreground__", hide = true)]
@@ -167,6 +171,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             Ok(())
         }
+        Command::Uninstall => uninstall::run_uninstall(),
         Command::__start_foreground__(args) => run_start_foreground(args).await,
     }
 }

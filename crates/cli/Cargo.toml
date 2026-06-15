@@ -33,6 +33,8 @@ env_logger = { workspace = true }
 chrono = { workspace = true }
 home = { workspace = true }
 urlencoding = "2.1"
+self-replace = "1.0"
+dirs = "5.0"
 
 # OS-specific dependencies. Kept under target cfgs so a Linux/macOS build never
 # pulls in the Windows crates (and vice-versa).
