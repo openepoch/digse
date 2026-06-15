@@ -31,6 +31,7 @@ tracing-subscriber = { workspace = true }
 log = { workspace = true }
 env_logger = { workspace = true }
 chrono = { workspace = true }
+home = { workspace = true }
 urlencoding = "2.1"
 
 # OS-specific dependencies. Kept under target cfgs so a Linux/macOS build never

@@ -4,7 +4,7 @@
 //!   * [`SearchConfig`] — the *runtime* configuration handed to [`DigseSearch`]
 //!     for a single query (engine selection, concurrency, timeout, stats).
 //!   * [`DigseConfig`] — the *persisted* configuration stored at
-//!     `~/.digse/config.toml` (override with `$DIGSE_CONFIG`). It holds the
+//!     `~/.digse/config.toml`. It holds the
 //!     default search knobs **and** the `digse serve` settings (host/port), so a
 //!     user can configure digse once and have both `digse search` and
 //!     `digse serve` honor it.
@@ -110,7 +110,7 @@ pub enum ConfigError {
     },
     #[error("config serialize error: {0}")]
     Serialize(#[from] toml::ser::Error),
-    #[error("home directory not found (set $HOME or $DIGSE_CONFIG)")]
+    #[error("home directory not found")]
     NoHome,
     #[error("unknown config key '{0}' (known: search.concurrent_engines, search.timeout_seconds, search.count, search.total_results, search.show_engine_stats, search.language, search.result_type, search.categories, search.time_range, search.safe_search, serve.host, serve.port)")]
     UnknownKey(String),
@@ -215,15 +215,12 @@ pub struct DigseConfig {
 impl DigseConfig {
     /// Path to the config file.
     ///
-    /// `$DIGSE_CONFIG` overrides the default `$HOME/.digse/config.toml`.
+    /// Linux: `~/.digse/config.toml`
+    /// Windows: `<user home>\.digse\config.toml`
     pub fn config_path() -> Result<PathBuf, ConfigError> {
-        if let Ok(p) = std::env::var("DIGSE_CONFIG") {
-            if !p.is_empty() {
-                return Ok(PathBuf::from(p));
-            }
-        }
-        let home = std::env::var("HOME").map_err(|_| ConfigError::NoHome)?;
-        Ok(PathBuf::from(home).join(".digse").join("config.toml"))
+        let home_dir = home::home_dir()
+            .ok_or(ConfigError::NoHome)?;
+        Ok(home_dir.join(".digse").join("config.toml"))
     }
 
     /// Load the config from disk, falling back to defaults when the file is

@@ -9,7 +9,7 @@ at once, deduplicates and ranks them, and serves them through a local HTTP API
 
 One command. No build step. No admin or sudo required.
 
-**Linux / macOS**
+**Linux**
 ```bash
 curl -fsSL https://raw.githubusercontent.com/openepoch/digse/main/docs/install.sh | sh
 ```
@@ -19,7 +19,7 @@ curl -fsSL https://raw.githubusercontent.com/openepoch/digse/main/docs/install.s
 irm https://raw.githubusercontent.com/openepoch/digse/main/docs/install.ps1 | iex
 ```
 
-This drops a static `digse` binary into `~/.local/bin` (Linux/macOS) or
+This drops a static `digse` binary into `~/.local/bin` (Linux) or
 `%LOCALAPPDATA%\digse` (Windows) and puts it on your PATH. The
 [install page][install] has per-platform download links and the full scripts.
 
@@ -36,7 +36,6 @@ curl -s 'http://127.0.0.1:8888/search?q=what+is+rust&count=5' | jq '.results[].t
 
 # or open the built-in search UI in a browser
 xdg-open http://127.0.0.1:8888   # Linux
-open      http://127.0.0.1:8888   # macOS
 
 digse ps                                               # is it running? (pid + url)
 digse stop                                             # stop it
@@ -45,11 +44,11 @@ digse startup add                                      # start at every boot (no
 
 ## Features
 
-- **🔍 238 engines** across 12 categories (230 enabled by default)
+- **🔍 208 engines** across 12 categories (200 enabled by default)
 - **🌐 Local HTTP API** — `digse start` runs a daemon serving `GET /search?q=...` returning a rich JSON envelope
 - **🖥️ Built-in web UI** — `GET /` is a textbox search page that renders results inline
 - **⚙️ Persisted config** — `digse config` stores search defaults **and** serve settings at `~/.digse/config.toml`
-- **🚀 Cross-platform daemon** — Linux, macOS, and Windows, with boot autostart and **no administrator/sudo required**
+- **🚀 Cross-platform daemon** — Linux and Windows, with boot autostart and **no administrator/sudo required**
 - **🎯 14 result types** — web, images, videos, music, news, files, torrents, academic, it, social, maps, shopping, weather, all
 - **🔧 Fine-grained control** — engine selection, concurrency, timeouts, rate limiting, retries
 - **🌍 URL-based filtering** — filetype/include/exclude filters applied to result URLs, no extra requests
@@ -152,8 +151,7 @@ curl -s 'http://127.0.0.1:8888/search?q=rust&engines=duckduckgo,wikipedia_en&tot
 
 ## Configuration
 
-`digse config` (or the `/config` web form) edits `~/.digse/config.toml`
-(override the path with `$DIGSE_CONFIG`). It holds both search defaults and
+`digse config` (or the `/config` web form) edits `~/.digse/config.toml`. It holds both search defaults and
 serve settings.
 
 ```bash
@@ -201,8 +199,6 @@ parameters always override config defaults.
 - **Windows** — writes a per-user registry Run key
   (`HKCU\…\CurrentVersion\Run\digse`) that launches a hidden `.vbs` shim at
   logon. **No administrator/UAC prompt.**
-- **macOS** — not yet supported (launchd); `status`/`add`/`remove` are harmless
-  no-ops that say so.
 
 ```bash
 digse startup status     # is autostart configured?

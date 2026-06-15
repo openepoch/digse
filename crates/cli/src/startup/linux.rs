@@ -137,19 +137,11 @@ WantedBy=default.target
 
 // --- paths ----------------------------------------------------------------
 
-/// `$XDG_CONFIG_HOME` or `$HOME/.config`.
+/// `~/.config` for systemd unit placement.
 fn config_home() -> Result<PathBuf, Box<dyn std::error::Error>> {
-    if let Ok(x) = env::var("XDG_CONFIG_HOME") {
-        if !x.is_empty() && x != "/" {
-            return Ok(PathBuf::from(x));
-        }
-    }
-    let home = env::var("HOME")
-        .map_err(|_| "$HOME and $XDG_CONFIG_HOME are both unset; cannot locate config dir")?;
-    if home.is_empty() {
-        return Err("$HOME is empty; cannot locate config dir".into());
-    }
-    Ok(PathBuf::from(home).join(".config"))
+    let home = home::home_dir()
+        .ok_or_else(|| "home directory not found".to_string())?;
+    Ok(home.join(".config"))
 }
 
 /// `<config_home>/systemd/user` — where user units live.

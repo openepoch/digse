@@ -20,7 +20,6 @@ pub mod archlinux;
 pub mod artic;
 pub mod artstation;
 pub mod arxiv;
-pub mod astrophysics_data_system;
 pub mod azure;
 pub mod baidu;
 pub mod bandcamp;
@@ -34,23 +33,18 @@ pub mod bitchute;
 pub mod boardreader;
 pub mod bpb;
 pub mod brave;
-pub mod braveapi;
 pub mod bt4g;
 pub mod btdigg;
 pub mod cachy_os;
 pub mod cara;
 pub mod ccc_media;
-pub mod chatnoir;
 pub mod chefkoch;
 pub mod chinaso;
-pub mod cloudflareai;
 pub mod command;
-pub mod core;
 pub mod crates;
 pub mod crossref;
 pub mod currency_convert;
 pub mod dailymotion;
-pub mod deepl;
 pub mod deezer;
 pub mod demo;
 pub mod demo_offline;
@@ -60,7 +54,6 @@ pub mod deviantart;
 pub mod devicons;
 pub mod dictzone;
 pub mod digbt;
-pub mod discourse;
 pub mod doaj;
 pub mod docker_hub;
 pub mod dogpile;
@@ -84,9 +77,7 @@ pub mod fdroid;
 pub mod findthatmeme;
 pub mod fireball;
 pub mod flaticon;
-pub mod flickr;
 pub mod flickr_noapi;
-pub mod freesound;
 pub mod frinkiac;
 pub mod fyyd;
 pub mod geizhals;
@@ -117,7 +108,6 @@ pub mod ipernity;
 pub mod iqiyi;
 pub mod jisho;
 pub mod json_engine;
-pub mod kagi;
 pub mod kickass;
 pub mod lemmy;
 pub mod libretranslate;
@@ -126,23 +116,18 @@ pub mod lingva;
 pub mod loc;
 pub mod lucide;
 pub mod luxxle;
-pub mod marginalia;
-pub mod mariadb_server;
 pub mod mastodon;
 pub mod material_icons;
 pub mod mediathekviewweb;
 pub mod mediawiki;
-pub mod meilisearch;
 pub mod metacpan;
 pub mod microsoft_learn;
 pub mod mixcloud;
 pub mod mojeek;
 pub mod mongodb;
 pub mod moviepilot;
-pub mod mozhi;
 pub mod mrs;
 pub mod mwmbl;
-pub mod mysql_server;
 pub mod naver;
 pub mod niconico;
 pub mod npm;
@@ -162,10 +147,8 @@ pub mod peertube;
 pub mod pexels;
 pub mod photon;
 pub mod pinterest;
-pub mod piped;
 pub mod piratebay;
 pub mod pixabay;
-pub mod pixiv;
 pub mod pkg_go_dev;
 pub mod podchaser;
 pub mod postgresql;
@@ -184,7 +167,6 @@ pub mod resulthunter;
 pub mod reuters;
 pub mod rottentomatoes;
 pub mod rumble;
-pub mod s1search;
 pub mod scanr_structures;
 pub mod meta_engine;
 pub mod seekninja;
@@ -198,11 +180,8 @@ pub mod sogou_images;
 pub mod sogou_videos;
 pub mod sogou_wechat;
 pub mod solidtorrents;
-pub mod solr;
 pub mod soundcloud;
 pub mod sourcehut;
-pub mod spotify;
-pub mod springer;
 pub mod sqlite;
 pub mod stackexchange;
 pub mod stackoverflow;
@@ -216,26 +195,21 @@ pub mod tineye;
 pub mod tokyotoshokan;
 pub mod tootfinder;
 pub mod torznab;
-pub mod translated;
-pub mod tubearchivist;
 pub mod unsplash;
 pub mod uxwing;
 pub mod valkey_server;
 pub mod vimeo;
 pub mod voidlinux;
 pub mod vuhuv;
-pub mod wallhaven;
 pub mod wikicommons;
 pub mod wikidata;
 pub mod wikipedia;
-pub mod wolframalpha_api;
 pub mod wolframalpha_noapi;
 pub mod wordnik;
 pub mod wttr;
 pub mod www1x;
 pub mod x1337;
 pub mod xpath;
-pub mod yacy;
 pub mod yandex;
 pub mod yahoo;
 pub mod yahoo_news;
@@ -262,7 +236,6 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(artic::ArticEngine::new()),
         Box::new(artstation::ArtstationEngine::new()),
         Box::new(arxiv::ArxivEngine::new()),
-        Box::new(astrophysics_data_system::AstrophysicsDataSystemEngine::new()),
         Box::new(azure::AzureEngine::new()),
         Box::new(baidu::BaiduEngine::new()),
         Box::new(bandcamp::BandcampEngine::new()),
@@ -275,24 +248,19 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(bitchute::BitchuteEngine::new()),
         Box::new(boardreader::BoardreaderEngine::new()),
         Box::new(bpb::BpbEngine::new()),
-        Box::new(braveapi::BraveapiEngine::new()),
         Box::new(brave::BraveEngine::new()),
         Box::new(bt4g::Bt4gEngine::new()),
         Box::new(btdigg::BtdiggEngine::new()),
         Box::new(cachy_os::CachyOsEngine::new()),
         Box::new(cara::CaraEngine::new()),
         Box::new(ccc_media::CccMediaEngine::new()),
-        Box::new(chatnoir::ChatnoirEngine::new()),
         Box::new(chefkoch::ChefkochEngine::new()),
         Box::new(chinaso::ChinasoEngine::new()),
-        Box::new(cloudflareai::CloudflareaiEngine::new()),
         Box::new(command::CommandEngine::new()),
-        Box::new(core::CoreEngine::new()),
         Box::new(crates::CratesEngine::new()),
         Box::new(crossref::CrossrefEngine::new()),
         Box::new(currency_convert::CurrencyConvertEngine::new()),
         Box::new(dailymotion::DailymotionEngine::new()),
-        Box::new(deepl::DeeplEngine::new()),
         Box::new(deezer::DeezerEngine::new()),
         Box::new(demo::DemoEngine::new()),
         Box::new(demo_offline::DemoOfflineEngine::new()),
@@ -302,7 +270,6 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(devicons::DeviconsEngine::new()),
         Box::new(dictzone::DictzoneEngine::new()),
         Box::new(digbt::DigbtEngine::new()),
-        Box::new(discourse::DiscourseEngine::new()),
         Box::new(doaj::DoajEngine::new()),
         Box::new(docker_hub::DockerHubEngine::new()),
         Box::new(dogpile::DogpileEngine::new()),
@@ -326,9 +293,7 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(findthatmeme::FindThatMemeEngine::new()),
         Box::new(fireball::FireballEngine::new()),
         Box::new(flaticon::FlaticonEngine::new()),
-        Box::new(flickr::FlickrEngine::new()),
         Box::new(flickr_noapi::FlickrNoApiEngine::new()),
-        Box::new(freesound::FreesoundEngine::new()),
         Box::new(frinkiac::FrinkiacEngine::new()),
         Box::new(fyyd::FyydEngine::new()),
         Box::new(geizhals::GeizhalsEngine::new()),
@@ -359,7 +324,6 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(iqiyi::IqiyiEngine::new()),
         Box::new(jisho::JishoEngine::new()),
         Box::new(json_engine::JsonEngine::new()),
-        Box::new(kagi::KagiEngine::new()),
         Box::new(kickass::KickassEngine::new()),
         Box::new(lemmy::LemmyEngine::new()),
         Box::new(libretranslate::LibretranslateEngine::new()),
@@ -368,23 +332,18 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(loc::LocEngine::new()),
         Box::new(lucide::LucideEngine::new()),
         Box::new(luxxle::LuxxleEngine::new()),
-        Box::new(marginalia::MarginaliaEngine::new()),
-        Box::new(mariadb_server::MariadbServerEngine::new()),
         Box::new(mastodon::MastodonEngine::new()),
         Box::new(material_icons::MaterialIconsEngine::new()),
         Box::new(mediathekviewweb::MediathekviewwebEngine::new()),
         Box::new(mediawiki::MediaWikiEngine::new()),
-        Box::new(meilisearch::MeilisearchEngine::new()),
         Box::new(metacpan::MetacpanEngine::new()),
         Box::new(microsoft_learn::MicrosoftLearnEngine::new()),
         Box::new(mixcloud::MixcloudEngine::new()),
         Box::new(mojeek::MojeekEngine::new_general()),
         Box::new(mongodb::MongoDbEngine::new()),
         Box::new(moviepilot::MoviepilotEngine::new()),
-        Box::new(mozhi::MozhiEngine::new()),
         Box::new(mrs::MrsEngine::new()),
         Box::new(mwmbl::MwmblEngine::new()),
-        Box::new(mysql_server::MysqlServerEngine::new()),
         Box::new(naver::NaverEngine::new()),
         Box::new(niconico::NiconicoEngine::new()),
         Box::new(npm::NpmEngine::new()),
@@ -404,10 +363,8 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(pexels::PexelsEngine::new()),
         Box::new(photon::PhotonEngine::new()),
         Box::new(pinterest::PinterestEngine::new()),
-        Box::new(piped::PipedEngine::new()),
         Box::new(piratebay::PirateBayEngine::new()),
         Box::new(pixabay::PixabayEngine::new_general()),
-        Box::new(pixiv::PixivEngine::new()),
         Box::new(pkg_go_dev::PkgGoDevEngine::new()),
         Box::new(podchaser::PodchaserEngine::new()),
         Box::new(postgresql::PostgreSqlEngine::new()),
@@ -426,7 +383,6 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(reuters::ReutersEngine::new()),
         Box::new(rottentomatoes::RottenTomatoesEngine::new()),
         Box::new(rumble::RumbleEngine::new()),
-        Box::new(s1search::S1SearchEngine::new()),
         Box::new(scanr_structures::ScanrStructuresEngine::new()),
         Box::new(meta_engine::MetaSearchEngine::new()),
         Box::new(seekninja::SeekNinjaEngine::new()),
@@ -440,11 +396,8 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(sogou_videos::SogouVideosEngine::new()),
         Box::new(sogou_wechat::SogouWechatEngine::new()),
         Box::new(solidtorrents::SolidTorrentsEngine::new()),
-        Box::new(solr::SolrEngine::new()),
         Box::new(soundcloud::SoundCloudEngine::new()),
         Box::new(sourcehut::SourceHutEngine::new()),
-        Box::new(spotify::SpotifyEngine::new()),
-        Box::new(springer::SpringerEngine::new()),
         Box::new(sqlite::SqliteEngine::new()),
         Box::new(stackexchange::StackExchangeEngine::new()),
         Box::new(stackoverflow::StackOverflowEngine::new()),
@@ -458,26 +411,21 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(tokyotoshokan::TokyoToshokanEngine::new()),
         Box::new(tootfinder::TootfinderEngine::new()),
         Box::new(torznab::TorznabEngine::new()),
-        Box::new(translated::TranslatedEngine::new()),
-        Box::new(tubearchivist::TubearchivistEngine::new()),
         Box::new(unsplash::UnsplashEngine::new_general()),
         Box::new(uxwing::UxwingEngine::new()),
         Box::new(valkey_server::ValkeyServerEngine::new()),
         Box::new(vimeo::VimeoEngine::new()),
         Box::new(voidlinux::VoidlinuxEngine::new()),
         Box::new(vuhuv::VuhuvEngine::new()),
-        Box::new(wallhaven::WallhavenEngine::new()),
         Box::new(wikicommons::WikicommonsEngine::new()),
         Box::new(wikidata::WikidataEngine::new()),
         Box::new(wikipedia::WikipediaEngine::new_general()),
-        Box::new(wolframalpha_api::WolframalphaApiEngine::new()),
         Box::new(wolframalpha_noapi::WolframalphaNoapiEngine::new()),
         Box::new(wordnik::WordnikEngine::new()),
         Box::new(wttr::WttrEngine::new()),
         Box::new(www1x::Www1xEngine::new()),
         Box::new(x1337::X1337Engine::new()),
         Box::new(xpath::XpathEngine::new()),
-        Box::new(yacy::YacyEngine::new()),
         Box::new(yandex::YandexEngine::new()),
         Box::new(yahoo::YahooEngine::new()),
         Box::new(yahoo_news::YahooNewsEngine::new()),

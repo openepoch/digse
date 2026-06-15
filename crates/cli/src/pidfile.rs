@@ -4,8 +4,8 @@
 //! child right after it binds its listener (see [`crate::start::bind_and_record`]).
 //! `digse ps` / `restart` / `stop` / `start` all consult it.
 //!
-//! Paths live next to the config file so `$DIGSE_CONFIG` is honored: if the
-//! config points at `/x/y/config.toml`, the PID file is `/x/y/start.pid`.
+//! Paths live next to the config file: the PID file is at
+//! `<config-dir>/start.pid`.
 
 use std::path::PathBuf;
 
@@ -22,8 +22,7 @@ pub struct PidRecord {
     pub port: u16,
 }
 
-/// Directory holding both config and runtime state (`~/.digse`, or the parent of
-/// `$DIGSE_CONFIG`).
+/// Directory holding both config and runtime state (`~/.digse`).
 pub fn state_dir() -> Result<PathBuf, Box<dyn std::error::Error>> {
     let cfg = digse::DigseConfig::config_path()?;
     let parent = cfg
@@ -126,16 +125,6 @@ pub(crate) fn is_our_process(pid: u32) -> bool {
         .split(|&b| b == 0)
         .filter(|s| !s.is_empty())
         .any(|arg| arg == b"__start_foreground__")
-}
-
-/// macOS / other Unix: no `/proc`, so a `kill(pid, 0)` liveness probe and we
-/// trust the PID file (same-uid only — `kill` returns EPERM for other users'
-/// live processes, which we treat as "not ours"). Good enough for a
-/// single-user local tool.
-#[cfg(all(unix, not(target_os = "linux")))]
-pub(crate) fn is_our_process(pid: u32) -> bool {
-    // 0 == success, ESRCH == no such process, EPERM == exists but not ours.
-    unsafe { libc::kill(pid as i32, 0) == 0 }
 }
 
 /// Windows: `OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION)` then

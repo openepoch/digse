@@ -71,7 +71,7 @@
     <h2>Install</h2>
     <p class="note">One command. No build step. No admin or sudo required.</p>
     <div class="os-tabs">
-      <button class="active" data-os="unix">Linux / macOS</button>
+      <button class="active" data-os="unix">Linux</button>
       <button data-os="windows">Windows</button>
     </div>
 
@@ -99,8 +99,6 @@
     <div class="grid">
       <div class="card"><h3>Linux x86_64</h3><div class="arch">x86_64-unknown-linux-gnu</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
       <div class="card"><h3>Linux ARM64</h3><div class="arch">aarch64-unknown-linux-gnu</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
-      <div class="card"><h3>macOS Intel</h3><div class="arch">x86_64-apple-darwin</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
-      <div class="card"><h3>macOS Apple Silicon</h3><div class="arch">aarch64-apple-darwin</div><a href="https://github.com/openepoch/digse/releases/latest">download .tar.gz →</a></div>
       <div class="card"><h3>Windows x64</h3><div class="arch">x86_64-pc-windows-msvc</div><a href="https://github.com/openepoch/digse/releases/latest">download .zip →</a></div>
     </div>
   </section>
@@ -118,14 +116,14 @@ digse startup add      # start at boot (systemd on Linux, Run key on Windows)</p
   <section>
     <h2>Features</h2>
     <ul class="features">
-      <li>238 engines across 12 categories</li>
+      <li>208 engines across 12 categories</li>
       <li>Structured JSON output, always</li>
       <li>Local HTTP API + HTML search UI</li>
       <li>Persisted config (~/.digse/config.toml)</li>
       <li>14 result types (web, images, videos…)</li>
       <li>URL-based filetype/include/exclude filters</li>
       <li>Engine selection, concurrency, rate limiting</li>
-      <li>Cross-platform daemon (Linux, macOS, Windows)</li>
+      <li>Cross-platform daemon (Linux, Windows)</li>
       <li>Boot autostart, no admin</li>
       <li>Usable as a Rust library</li>
     </ul>

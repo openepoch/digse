@@ -63,3 +63,6 @@ url = "2.5"
 
 # Async traits
 async-trait = "0.1"
+
+# Home directory
+home = "0.5"

@@ -1,5 +1,5 @@
 #!/bin/sh
-# digse installer — Linux + macOS.
+# digse installer — Linux.
 #
 # Downloads the latest release binary from github.com/openepoch/digse and
 # installs it into ~/.local/bin (no sudo required). Re-running updates in place.
@@ -24,8 +24,7 @@ os="$(uname -s)"
 arch="$(uname -m)"
 case "$os" in
     Linux)  os=unknown-linux-gnu ;;
-    Darwin) os=apple-darwin ;;
-    *) err "unsupported OS '$os' (this installer is for Linux/macOS; on Windows use install.ps1)" ;;
+    *) err "unsupported OS '$os' (this installer is for Linux; on Windows use install.ps1)" ;;
 esac
 case "$arch" in
     x86_64|amd64)  arch=x86_64 ;;

@@ -27,12 +27,6 @@ jobs:
           - runner: ubuntu-24.04-arm
             target: aarch64-unknown-linux-gnu
             archive: tar.gz
-          - runner: macos-13
-            target: x86_64-apple-darwin
-            archive: tar.gz
-          - runner: macos-14
-            target: aarch64-apple-darwin
-            archive: tar.gz
           - runner: windows-latest
             target: x86_64-pc-windows-msvc
             archive: zip
@@ -52,9 +46,7 @@ jobs:
       - name: Build release binary
         run: cargo build --release -p digse --target ${{ matrix.target }}
 
-      # Strip debug symbols on Linux only. macOS binaries are ad-hoc code-signed
-      # by the toolchain; stripping would invalidate the signature and cause
-      # "killed: 9" on first launch. Windows MSVC objects don't use `strip`.
+      # Strip debug symbols on Linux only. Windows MSVC objects don't use `strip`.
       - name: Strip binary
         if: runner.os == 'Linux'
         run: strip target/${{ matrix.target }}/release/digse

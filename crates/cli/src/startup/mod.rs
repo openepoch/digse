@@ -5,8 +5,6 @@
 //!
 //! - **Linux** (`linux.rs`): a systemd *user* service + `loginctl enable-linger`,
 //!   so the daemon starts at BOOT, before login.
-//! - **macOS** (`macos.rs`): not yet supported (launchd is out of scope for v1);
-//!   all three commands are harmless no-ops that say so.
 //! - **Windows** (`windows.rs`): a per-user registry **Run** key
 //!   (`HKCU\…\Run\digse`) launched via a hidden `.vbs` shim. Needs NO admin.
 //!
@@ -17,11 +15,6 @@
 mod linux;
 #[cfg(target_os = "linux")]
 pub use linux::{add, remove, status};
-
-#[cfg(all(unix, not(target_os = "linux")))]
-mod macos;
-#[cfg(all(unix, not(target_os = "linux")))]
-pub use macos::{add, remove, status};
 
 #[cfg(windows)]
 mod windows;
