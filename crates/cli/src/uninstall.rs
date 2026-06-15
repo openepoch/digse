@@ -125,7 +125,7 @@ pub fn remove_binary() -> Result<(), Box<dyn std::error::Error>> {
     #[cfg(windows)]
     {
         // On Windows, self_replace can do in-place replacement
-        self_replace::self_delete(&bin_path)?;
+        self_replace::self_delete()?;
         println!("Removed binary: {}", bin_path.display());
     }
 
