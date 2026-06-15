@@ -14,8 +14,6 @@ pub mod annas_archive;
 pub mod ansa;
 pub mod aol;
 pub mod apkmirror;
-pub mod apple_app_store;
-pub mod apple_maps;
 pub mod archlinux;
 pub mod artic;
 pub mod artstation;
@@ -230,8 +228,6 @@ pub fn all_engines() -> Vec<Box<dyn Engine>> {
         Box::new(ansa::AnsaEngine::new()),
         Box::new(aol::AolEngine::new()),
         Box::new(apkmirror::ApkmirrorEngine::new()),
-        Box::new(apple_app_store::AppleAppStoreEngine::new()),
-        Box::new(apple_maps::AppleMapsEngine::new()),
         Box::new(archlinux::ArchlinuxEngine::new()),
         Box::new(artic::ArticEngine::new()),
         Box::new(artstation::ArtstationEngine::new()),

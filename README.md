@@ -44,7 +44,7 @@ digse startup add                                      # start at every boot (no
 
 ## Features
 
-- **🔍 208 engines** across 12 categories (200 enabled by default)
+- **🔍 206 engines** across 12 categories (198 enabled by default)
 - **🌐 Local HTTP API** — `digse start` runs a daemon serving `GET /search?q=...` returning a rich JSON envelope
 - **🖥️ Built-in web UI** — `GET /` is a textbox search page that renders results inline
 - **⚙️ Persisted config** — `digse config` stores search defaults **and** serve settings at `~/.digse/config.toml`

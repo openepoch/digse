@@ -36,7 +36,7 @@ urlencoding = "2.1"
 self-replace = "1.0"
 dirs = "5.0"
 
-# OS-specific dependencies. Kept under target cfgs so a Linux/macOS build never
+# OS-specific dependencies. Kept under target cfgs so a Linux build never
 # pulls in the Windows crates (and vice-versa).
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"

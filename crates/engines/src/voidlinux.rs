@@ -62,13 +62,7 @@ impl VoidlinuxEngine {
     /// `(arch, remaining_query)`.
     fn extract_arch(query: &str) -> (&'static str, String) {
         for arch in [
-            "aarch64-musl",
-            "armv6l-musl",
-            "armv7l-musl",
             "x86_64-musl",
-            "aarch64",
-            "armv6l",
-            "armv7l",
             "i686",
             "x86_64",
         ] {

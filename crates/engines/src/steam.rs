@@ -48,13 +48,11 @@ struct SteamPrice {
     final_price: i64,
 }
 
-// The platforms object looks like {"windows": true, "mac": false, "linux": true}.
+// The platforms object looks like {"windows": true, "linux": true}.
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct SteamPlatforms {
     #[serde(default)]
     windows: bool,
-    #[serde(default)]
-    mac: bool,
     #[serde(default)]
     linux: bool,
 }
@@ -121,9 +119,6 @@ impl SteamEngine {
             let mut platforms = Vec::new();
             if item.platforms.windows {
                 platforms.push("Windows");
-            }
-            if item.platforms.mac {
-                platforms.push("macOS");
             }
             if item.platforms.linux {
                 platforms.push("Linux");

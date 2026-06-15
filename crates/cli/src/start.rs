@@ -442,7 +442,7 @@ fn root_html_body(cfg: &digse::DigseConfig) -> String {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>digse</title>
 <style>
-  body {{ font: 15px system-ui, -apple-system, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
+  body {{ font: 15px system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
   header h1 {{ font-size: 1.6rem; margin: 0 0 1rem; }}
   header .settings {{ float: right; font-size: .8rem; }}
   form#f {{ display: flex; gap: .5rem; margin-bottom: .5rem; }}
@@ -756,7 +756,7 @@ fn config_form_html(cfg: &digse::DigseConfig, message: Option<&String>) -> Strin
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>digse · settings</title>
 <style>
-  body {{ font: 15px system-ui, -apple-system, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
+  body {{ font: 15px system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; }}
   h1 {{ font-size: 1.4rem; margin: 0 0 .5rem; }}
   h2 {{ font-size: 1.05rem; margin: 1.5rem 0 .5rem; border-bottom: 1px solid #eee; padding-bottom: .25rem; }}
   .row {{ margin: .5rem 0; display: flex; align-items: center; gap: .5rem; }}

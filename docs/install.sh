@@ -28,7 +28,6 @@ case "$os" in
 esac
 case "$arch" in
     x86_64|amd64)  arch=x86_64 ;;
-    aarch64|arm64) arch=aarch64 ;;
     *) err "unsupported architecture '$arch'" ;;
 esac
 target="$arch-$os"
