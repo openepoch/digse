@@ -47,8 +47,6 @@ struct UnsplashLinks {
 #[derive(Debug, Deserialize, Default)]
 struct UnsplashUrls {
     #[serde(default)]
-    raw: Option<String>,
-    #[serde(default)]
     regular: Option<String>,
     #[serde(default)]
     thumb: Option<String>,
