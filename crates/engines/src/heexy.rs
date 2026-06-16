@@ -36,8 +36,8 @@ struct HeexyItem {
     description: String,
     #[serde(default)]
     image: String,
-    #[serde(default)]
-    rawImage: String,
+    #[serde(default, rename = "rawImage")]
+    raw_image: String,
 }
 
 impl HeexyEngine {
@@ -131,7 +131,7 @@ impl HeexyEngine {
                         .with_rank(query.offset + i + 1)
                         .with_score(1.0 - (i as f64 * 0.05))
                         .with_result_type(ResultType::Images)
-                        .with_extra("img_src", serde_json::json!(item.rawImage))
+                        .with_extra("img_src", serde_json::json!(item.raw_image))
                         .with_extra("thumbnail", serde_json::json!(item.image)),
                 );
             } else {

@@ -21,8 +21,8 @@ struct SemanticScholarResponse {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SemanticScholarPaper {
-    #[serde(default)]
-    paperId: String,
+    #[serde(default, rename = "paperId")]
+    paper_id: String,
     #[serde(default)]
     title: String,
     #[serde(default)]
@@ -34,10 +34,10 @@ struct SemanticScholarPaper {
     year: Option<i32>,
     #[serde(default)]
     authors: Vec<SemanticScholarAuthor>,
-    #[serde(default)]
-    citationCount: Option<i32>,
-    #[serde(default)]
-    publicationVenue: Option<String>,
+    #[serde(default, rename = "citationCount")]
+    citation_count: Option<i32>,
+    #[serde(default, rename = "publicationVenue")]
+    publication_venue: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -129,11 +129,11 @@ impl SemanticScholarEngine {
             parts.push(format!("Year: {}", year));
         }
 
-        if let Some(venue) = &paper.publicationVenue {
+        if let Some(venue) = &paper.publication_venue {
             parts.push(format!("Published in: {}", venue));
         }
 
-        if let Some(citations) = paper.citationCount {
+        if let Some(citations) = paper.citation_count {
             parts.push(format!("Citations: {}", citations));
         }
 
@@ -169,7 +169,7 @@ impl Engine for SemanticScholarEngine {
         let mut results = Vec::new();
         for (i, paper) in papers.iter().enumerate() {
             let url = paper.url.clone()
-                .unwrap_or_else(|| self.format_paper_url(&paper.paperId));
+                .unwrap_or_else(|| self.format_paper_url(&paper.paper_id));
 
             let snippet = self.create_snippet(paper);
 

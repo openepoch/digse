@@ -23,8 +23,8 @@ const RESULTS_PER_PAGE: i64 = 20;
 struct OdyseeItem {
     #[serde(default)]
     name: String,
-    #[serde(default)]
-    claimId: String,
+    #[serde(default, rename = "claimId")]
+    claim_id: String,
     #[serde(default)]
     title: String,
     #[serde(default)]
@@ -97,8 +97,8 @@ impl OdyseeEngine {
             if item.title.is_empty() && item.name.is_empty() {
                 continue;
             }
-            let url = format!("https://odysee.com/{}:{}", item.name, item.claimId);
-            let iframe_url = format!("https://odysee.com/$/embed/{}:{}", item.name, item.claimId);
+            let url = format!("https://odysee.com/{}:{}", item.name, item.claim_id);
+            let iframe_url = format!("https://odysee.com/$/embed/{}:{}", item.name, item.claim_id);
             let thumbnail = if !item.thumbnail_url.is_empty() {
                 format!(
                     "https://thumbnails.odycdn.com/optimize/s:390:0/quality:85/plain/{}",

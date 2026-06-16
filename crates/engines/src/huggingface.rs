@@ -22,8 +22,8 @@ pub struct HuggingfaceEngine {
 struct HfEntry {
     #[serde(default)]
     id: String,
-    #[serde(default)]
-    createdAt: String,
+    #[serde(default, rename = "createdAt")]
+    created_at: String,
     #[serde(default)]
     likes: i64,
     #[serde(default)]
@@ -132,8 +132,8 @@ impl HuggingfaceEngine {
                 .with_rank(query.offset + i + 1)
                 .with_score(1.0 - (i as f64 * 0.05))
                 .with_result_type(ResultType::IT);
-            if !entry.createdAt.is_empty() {
-                result = result.with_extra("published", serde_json::json!(entry.createdAt));
+            if !entry.created_at.is_empty() {
+                result = result.with_extra("published", serde_json::json!(entry.created_at));
             }
             if entry.likes > 0 {
                 result = result.with_extra("likes", serde_json::json!(entry.likes));

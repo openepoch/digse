@@ -1,7 +1,6 @@
 //! Mojeek search engine implementation
 
 use async_trait::async_trait;
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 use digse_core::{
@@ -21,27 +20,6 @@ pub enum MojeekSearchType {
     General,
     Images,
     News,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct MojeekWebResult {
-    url: String,
-    title: String,
-    content: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct MojeekImageResult {
-    url: String,
-    title: String,
-    img_src: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct MojeekNewsResult {
-    url: String,
-    title: String,
-    content: String,
 }
 
 impl MojeekEngine {

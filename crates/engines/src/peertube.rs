@@ -36,14 +36,14 @@ struct PeertubeVideo {
     duration: i64,
     #[serde(default)]
     views: i64,
-    #[serde(default)]
-    publishedAt: String,
-    #[serde(default)]
-    embedUrl: String,
-    #[serde(default)]
-    thumbnailUrl: String,
-    #[serde(default)]
-    previewUrl: String,
+    #[serde(default, rename = "publishedAt")]
+    published_at: String,
+    #[serde(default, rename = "embedUrl")]
+    embed_url: String,
+    #[serde(default, rename = "thumbnailUrl")]
+    thumbnail_url: String,
+    #[serde(default, rename = "previewUrl")]
+    preview_url: String,
     #[serde(default)]
     account: Option<PeertubeAccount>,
     #[serde(default)]
@@ -54,16 +54,16 @@ struct PeertubeVideo {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct PeertubeAccount {
-    #[serde(default)]
-    displayName: String,
+    #[serde(default, rename = "displayName")]
+    display_name: String,
     #[serde(default)]
     name: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct PeertubeChannel {
-    #[serde(default)]
-    displayName: String,
+    #[serde(default, rename = "displayName")]
+    display_name: String,
     #[serde(default)]
     name: String,
     #[serde(default)]
@@ -135,20 +135,20 @@ impl PeertubeEngine {
                 format!("{}{}", self.base_url, v.url)
             };
 
-            let thumbnail = if !v.thumbnailUrl.is_empty() {
-                v.thumbnailUrl.clone()
+            let thumbnail = if !v.thumbnail_url.is_empty() {
+                v.thumbnail_url.clone()
             } else {
-                v.previewUrl.clone()
+                v.preview_url.clone()
             };
 
             let author = v
                 .account
                 .as_ref()
                 .map(|a| {
-                    if a.displayName.is_empty() {
+                    if a.display_name.is_empty() {
                         a.name.clone()
                     } else {
-                        a.displayName.clone()
+                        a.display_name.clone()
                     }
                 })
                 .unwrap_or_default();
@@ -158,8 +158,8 @@ impl PeertubeEngine {
 
             let mut metadata_parts = Vec::new();
             if let Some(ch) = &v.channel {
-                if !ch.displayName.is_empty() {
-                    metadata_parts.push(ch.displayName.clone());
+                if !ch.display_name.is_empty() {
+                    metadata_parts.push(ch.display_name.clone());
                 }
                 if !ch.name.is_empty() && !ch.host.is_empty() {
                     metadata_parts.push(format!("{}@{}", ch.name, ch.host));
@@ -180,8 +180,8 @@ impl PeertubeEngine {
                     .with_extra("duration", serde_json::json!(v.duration))
                     .with_extra("views", serde_json::json!(v.views))
                     .with_extra("author", serde_json::json!(author))
-                    .with_extra("published", serde_json::json!(v.publishedAt))
-                    .with_extra("iframe_src", serde_json::json!(v.embedUrl))
+                    .with_extra("published", serde_json::json!(v.published_at))
+                    .with_extra("iframe_src", serde_json::json!(v.embed_url))
                     .with_extra("metadata", serde_json::json!(metadata_parts.join(" | "))),
             );
         }

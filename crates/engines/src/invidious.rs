@@ -20,8 +20,8 @@ pub struct InvidiousEngine {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct InvidiousVideo {
-    #[serde(default)]
-    videoId: String,
+    #[serde(default, rename = "videoId")]
+    video_id: String,
     #[serde(default)]
     title: String,
     #[serde(default)]
@@ -30,14 +30,14 @@ struct InvidiousVideo {
     item_type: String,
     #[serde(default)]
     author: String,
-    #[serde(default)]
-    viewCount: i64,
-    #[serde(default)]
-    lengthSeconds: i64,
+    #[serde(default, rename = "viewCount")]
+    view_count: i64,
+    #[serde(default, rename = "lengthSeconds")]
+    length_seconds: i64,
     #[serde(default)]
     published: i64,
-    #[serde(default)]
-    videoThumbnails: Vec<InvidiousThumb>,
+    #[serde(default, rename = "videoThumbnails")]
+    video_thumbnails: Vec<InvidiousThumb>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
@@ -110,15 +110,15 @@ impl InvidiousEngine {
             if results.len() >= query.count {
                 break;
             }
-            if video.item_type != "video" || video.videoId.is_empty() {
+            if video.item_type != "video" || video.video_id.is_empty() {
                 continue;
             }
-            let url = format!("{}/watch?v={}", self.base_url, video.videoId);
+            let url = format!("{}/watch?v={}", self.base_url, video.video_id);
             let thumbnail = video
-                .videoThumbnails
+                .video_thumbnails
                 .iter()
                 .find(|t| t.quality == "sddefault")
-                .or_else(|| video.videoThumbnails.first())
+                .or_else(|| video.video_thumbnails.first())
                 .map(|t| {
                     if t.url.starts_with("http") {
                         t.url.clone()
@@ -127,8 +127,8 @@ impl InvidiousEngine {
                     }
                 })
                 .unwrap_or_default();
-            let iframe_src = format!("{}/embed/{}", self.base_url, video.videoId);
-            let duration = format_duration(video.lengthSeconds);
+            let iframe_src = format!("{}/embed/{}", self.base_url, video.video_id);
+            let duration = format_duration(video.length_seconds);
 
             let result = SearchResult::new(video.title.clone(), url)
                 .with_snippet(video.description.clone())
@@ -138,7 +138,7 @@ impl InvidiousEngine {
                 .with_result_type(ResultType::Videos)
                 .with_extra("thumbnail", serde_json::json!(thumbnail))
                 .with_extra("duration", serde_json::json!(duration))
-                .with_extra("views", serde_json::json!(video.viewCount))
+                .with_extra("views", serde_json::json!(video.view_count))
                 .with_extra("iframe_src", serde_json::json!(iframe_src))
                 .with_extra("author", serde_json::json!(video.author));
             let _ = i;

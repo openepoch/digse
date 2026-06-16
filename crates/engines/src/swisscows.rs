@@ -283,7 +283,7 @@ impl SwisscowsEngine {
     }
 
     async fn fetch_results(&self, query: &SearchQuery) -> Result<Vec<SearchResult>> {
-        let pageno = (query.offset / RESULTS_PER_PAGE) + 1;
+        let _pageno = (query.offset / RESULTS_PER_PAGE) + 1;
         let locale = "en-US".to_string();
         let freshness = match query.time_range {
             Some(TimeRange::Day) => "Day",

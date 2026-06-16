@@ -31,16 +31,16 @@ struct IqiyiData {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct IqiyiTemplate {
-    #[serde(default)]
-    albumInfo: IqiyiAlbum,
+    #[serde(default, rename = "albumInfo")]
+    album_info: IqiyiAlbum,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct IqiyiAlbum {
     #[serde(default)]
     videos: Vec<IqiyiVideo>,
-    #[serde(default)]
-    pageUrl: String,
+    #[serde(default, rename = "pageUrl")]
+    page_url: String,
     #[serde(default)]
     title: String,
     #[serde(default)]
@@ -49,14 +49,14 @@ struct IqiyiAlbum {
     img: String,
     #[serde(default)]
     duration: i64,
-    #[serde(default)]
-    releaseTime: Option<IqiyiValue>,
+    #[serde(default, rename = "releaseTime")]
+    release_time: Option<IqiyiValue>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct IqiyiVideo {
-    #[serde(default)]
-    pageUrl: String,
+    #[serde(default, rename = "pageUrl")]
+    page_url: String,
     #[serde(default)]
     title: String,
     #[serde(default)]
@@ -132,7 +132,7 @@ impl IqiyiEngine {
             None => return Ok(results),
         };
         for template in &data.templates {
-            let album = &template.albumInfo;
+            let album = &template.album_info;
             if !album.videos.is_empty() {
                 for video in &album.videos {
                     if results.len() >= query.count {
@@ -140,12 +140,12 @@ impl IqiyiEngine {
                     }
                     let idx = results.len();
                     results.push(self.make_result(
-                        &video.pageUrl,
+                        &video.page_url,
                         &video.title,
                         &album.brief.value,
                         video.duration,
                         &album.img,
-                        album.releaseTime.as_ref().map(|v| &v.value),
+                        album.release_time.as_ref().map(|v| &v.value),
                         query,
                         idx,
                     ));
@@ -157,12 +157,12 @@ impl IqiyiEngine {
                 }
                 let idx = results.len();
                 results.push(self.make_result(
-                    &album.pageUrl,
+                    &album.page_url,
                     &album.title,
                     &album.brief.value,
                     album.duration,
                     &album.img,
-                    album.releaseTime.as_ref().map(|v| &v.value),
+                    album.release_time.as_ref().map(|v| &v.value),
                     query,
                     idx,
                 ));

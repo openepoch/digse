@@ -63,22 +63,22 @@ struct NvdDescription {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct NvdMetrics {
-    #[serde(default)]
-    cvssMetricV31: Vec<NvdCvssMetric>,
+    #[serde(default, rename = "cvssMetricV31")]
+    cvss_metric_v31: Vec<NvdCvssMetric>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct NvdCvssMetric {
-    #[serde(default)]
-    cvssData: NvdCvssData,
+    #[serde(default, rename = "cvssData")]
+    cvss_data: NvdCvssData,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct NvdCvssData {
-    #[serde(default)]
-    baseSeverity: String,
-    #[serde(default)]
-    baseScore: Option<f64>,
+    #[serde(default, rename = "baseSeverity")]
+    base_severity: String,
+    #[serde(default, rename = "baseScore")]
+    base_score: Option<f64>,
 }
 
 impl NvdEngine {
@@ -153,9 +153,9 @@ impl NvdEngine {
                 .map(|d| d.value.clone())
                 .unwrap_or_default();
 
-            let info = cve.metrics.cvssMetricV31.first().map(|m| &m.cvssData);
-            let severity = info.map(|i| i.baseSeverity.clone()).unwrap_or_default();
-            let cvss_score = info.and_then(|i| i.baseScore);
+            let info = cve.metrics.cvss_metric_v31.first().map(|m| &m.cvss_data);
+            let severity = info.map(|i| i.base_severity.clone()).unwrap_or_default();
+            let cvss_score = info.and_then(|i| i.base_score);
 
             let published_str = format!("Published: {}", cve.published);
             let metadata_str = match (severity.as_str(), cvss_score) {

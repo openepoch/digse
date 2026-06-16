@@ -116,7 +116,7 @@ impl WolframalphaNoapiEngine {
                 continue;
             }
             // input pod plaintext becomes the infobox title
-            if (pod_id == "Input" || infobox_title.is_empty()) {
+            if pod_id == "Input" || infobox_title.is_empty() {
                 if let Some(first) = pod.subpods.as_ref().and_then(|s| s.first()) {
                     if !first.plaintext.is_empty() && infobox_title.is_empty() {
                         infobox_title = first.plaintext.clone();

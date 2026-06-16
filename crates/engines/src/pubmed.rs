@@ -163,10 +163,6 @@ impl PubMedEngine {
         }
     }
 
-    fn create_url(&self, pmid: &str) -> String {
-        format!("https://pubmed.ncbi.nlm.nih.gov/{}", pmid)
-    }
-
     fn create_snippet(&self, article: &PubMedArticle) -> String {
         let mut parts = Vec::new();
 

@@ -19,30 +19,30 @@ pub struct DuckDuckGoWeatherEngine {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct WeatherForecast {
-    #[serde(default)]
-    currentWeather: CurrentWeather,
-    #[serde(default)]
-    forecastHourly: ForecastHourly,
+    #[serde(default, rename = "currentWeather")]
+    current_weather: CurrentWeather,
+    #[serde(default, rename = "forecastHourly")]
+    forecast_hourly: ForecastHourly,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct CurrentWeather {
     #[serde(default)]
     temperature: f64,
-    #[serde(default)]
-    conditionCode: String,
-    #[serde(default)]
-    temperatureApparent: f64,
-    #[serde(default)]
-    windDirection: f64,
-    #[serde(default)]
-    windSpeed: f64,
+    #[serde(default, rename = "conditionCode")]
+    condition_code: String,
+    #[serde(default, rename = "temperatureApparent")]
+    temperature_apparent: f64,
+    #[serde(default, rename = "windDirection")]
+    wind_direction: f64,
+    #[serde(default, rename = "windSpeed")]
+    wind_speed: f64,
     #[serde(default)]
     pressure: f64,
     #[serde(default)]
     humidity: f64,
-    #[serde(default)]
-    cloudCover: f64,
+    #[serde(default, rename = "cloudCover")]
+    cloud_cover: f64,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
@@ -155,16 +155,16 @@ impl DuckDuckGoWeatherEngine {
             Err(_) => return Ok(vec![]),
         };
 
-        let cur = parsed.currentWeather;
-        let condition = Self::map_condition(&cur.conditionCode);
+        let cur = parsed.current_weather;
+        let condition = Self::map_condition(&cur.condition_code);
         let answer = format!(
             "Weather for {}: {} °C, {} (feels like {} °C, humidity {:.0}%, wind {:.1} mi/h)",
             location,
             cur.temperature,
             condition,
-            cur.temperatureApparent,
+            cur.temperature_apparent,
             cur.humidity * 100.0,
-            cur.windSpeed
+            cur.wind_speed
         );
         let search_url = format!("https://duckduckgo.com/?q={}+weather", encoded);
 
@@ -177,12 +177,12 @@ impl DuckDuckGoWeatherEngine {
             .with_extra("location", serde_json::json!(location))
             .with_extra("temperature", serde_json::json!(cur.temperature))
             .with_extra("condition", serde_json::json!(condition))
-            .with_extra("feels_like", serde_json::json!(cur.temperatureApparent))
+            .with_extra("feels_like", serde_json::json!(cur.temperature_apparent))
             .with_extra("humidity", serde_json::json!(cur.humidity * 100.0))
-            .with_extra("wind_speed", serde_json::json!(cur.windSpeed))
-            .with_extra("wind_direction", serde_json::json!(cur.windDirection))
+            .with_extra("wind_speed", serde_json::json!(cur.wind_speed))
+            .with_extra("wind_direction", serde_json::json!(cur.wind_direction))
             .with_extra("pressure", serde_json::json!(cur.pressure))
-            .with_extra("cloud_cover", serde_json::json!(cur.cloudCover * 100.0));
+            .with_extra("cloud_cover", serde_json::json!(cur.cloud_cover * 100.0));
 
         Ok(vec![result])
     }

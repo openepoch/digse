@@ -1,7 +1,6 @@
 //! Arxiv search engine implementation
 
 use async_trait::async_trait;
-use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 use digse_core::{
@@ -13,52 +12,6 @@ use digse_core::{
 pub struct ArxivEngine {
     metadata: EngineMetadata,
     client: reqwest::Client,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ArxivResponse {
-    #[serde(rename = "entry")]
-    #[serde(default)]
-    entries: Vec<ArxivEntry>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ArxivEntry {
-    #[serde(default)]
-    title: String,
-    #[serde(rename = "id")]
-    #[serde(default)]
-    arxiv_id: String,
-    #[serde(rename = "summary")]
-    #[serde(default)]
-    summary: String,
-    #[serde(default)]
-    published: String,
-    #[serde(default)]
-    authors: Vec<ArxivAuthor>,
-    #[serde(rename = "primary_category")]
-    #[serde(default)]
-    primary_category: String,
-    #[serde(default)]
-    categories: Vec<String>,
-    #[serde(rename = "link")]
-    #[serde(default)]
-    links: Vec<ArxivLink>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ArxivAuthor {
-    #[serde(default)]
-    name: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ArxivLink {
-    #[serde(default)]
-    href: String,
-    #[serde(rename = "type")]
-    #[serde(default)]
-    link_type: String,
 }
 
 impl ArxivEngine {

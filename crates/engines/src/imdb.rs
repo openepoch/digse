@@ -43,8 +43,8 @@ struct ImdbEntry {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct ImdbImage {
-    #[serde(default)]
-    imageUrl: String,
+    #[serde(default, rename = "imageUrl")]
+    image_url: String,
 }
 
 fn category_for(id: &str) -> Option<&'static str> {
@@ -164,7 +164,7 @@ impl ImdbEngine {
             let thumbnail = entry
                 .i
                 .as_ref()
-                .map(|img| make_thumbnail(&img.imageUrl))
+                .map(|img| make_thumbnail(&img.image_url))
                 .unwrap_or_default();
 
             let mut result = SearchResult::new(title, url)

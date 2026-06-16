@@ -33,8 +33,8 @@ struct LtRequest {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 struct LtResponse {
-    #[serde(default)]
-    translatedText: String,
+    #[serde(default, rename = "translatedText")]
+    translated_text: String,
     #[serde(default)]
     alternatives: Vec<String>,
 }
@@ -114,7 +114,7 @@ impl LibretranslateEngine {
             Err(_) => return Ok(vec![]),
         };
 
-        if parsed.translatedText.is_empty() {
+        if parsed.translated_text.is_empty() {
             return Ok(vec![]);
         }
 
@@ -128,7 +128,7 @@ impl LibretranslateEngine {
             )
         };
 
-        let result = SearchResult::new(parsed.translatedText.clone(), self.base_url.clone())
+        let result = SearchResult::new(parsed.translated_text.clone(), self.base_url.clone())
             .with_snippet(snippet)
             .with_engine(self.name())
             .with_rank(1)

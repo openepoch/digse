@@ -13,6 +13,7 @@ pub struct HttpClient {
     client: Client,
     rate_limiter: Arc<Option<RateLimiter>>,
     semaphore: Arc<Semaphore>,
+    #[allow(dead_code)]
     default_timeout: Duration,
 }
 

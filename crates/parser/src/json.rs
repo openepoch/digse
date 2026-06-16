@@ -82,7 +82,7 @@ impl JsonParser {
     }
 
     /// Extract array of objects
-    pub fn extract_objects(&self, path: &str) -> Result<Vec<JsonExtractor>, JsonParseError> {
+    pub fn extract_objects(&self, path: &str) -> Result<Vec<JsonExtractor<'_>>, JsonParseError> {
         let array = self.get_array(path)?;
         Ok(array
             .iter()
@@ -142,7 +142,7 @@ impl<'a> JsonExtractor<'a> {
     }
 
     /// Get nested object
-    pub fn get_object(&self, key: &str) -> Result<JsonExtractor, JsonParseError> {
+    pub fn get_object(&self, key: &str) -> Result<JsonExtractor<'_>, JsonParseError> {
         self.value
             .get(key)
             .and_then(|v| v.as_object())
@@ -154,7 +154,7 @@ impl<'a> JsonExtractor<'a> {
     }
 
     /// Get array field
-    pub fn get_array(&self, key: &str) -> Result<Vec<JsonExtractor>, JsonParseError> {
+    pub fn get_array(&self, key: &str) -> Result<Vec<JsonExtractor<'_>>, JsonParseError> {
         self.value
             .get(key)
             .and_then(|v| v.as_array())

@@ -36,7 +36,7 @@ impl HtmlParser {
     }
 
     /// Select elements by CSS selector
-    pub fn select(&self, selector: &str) -> Result<HtmlExtractor, HtmlParseError> {
+    pub fn select(&self, selector: &str) -> Result<HtmlExtractor<'_>, HtmlParseError> {
         let sel = Selector::parse(selector)
             .map_err(|e| HtmlParseError::SelectorError(e.to_string()))?;
 
@@ -112,7 +112,7 @@ impl<'a> HtmlExtractor<'a> {
     }
 
     /// Select child elements
-    pub fn select_children(&self, selector: &str) -> Result<Vec<HtmlExtractor>, HtmlParseError> {
+    pub fn select_children(&self, selector: &str) -> Result<Vec<HtmlExtractor<'_>>, HtmlParseError> {
         let sel = Selector::parse(selector)
             .map_err(|e| HtmlParseError::SelectorError(e.to_string()))?;
 

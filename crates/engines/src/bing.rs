@@ -15,8 +15,8 @@ pub struct BingEngine {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct BingResponse {
-    #[serde(default)]
-    webPages: Option<BingWebPages>,
+    #[serde(default, rename = "webPages")]
+    web_pages: Option<BingWebPages>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -33,8 +33,8 @@ struct BingWebResult {
     url: String,
     #[serde(default)]
     snippet: String,
-    #[serde(default)]
-    displayUrl: String,
+    #[serde(default, rename = "displayUrl")]
+    display_url: String,
 }
 
 impl BingEngine {
@@ -84,55 +84,12 @@ impl BingEngine {
 
         // Try JSON parsing
         if let Ok(bing_response) = serde_json::from_str::<BingResponse>(&text) {
-            if let Some(web_pages) = bing_response.webPages {
+            if let Some(web_pages) = bing_response.web_pages {
                 return Ok(web_pages.value);
             }
         }
 
         Ok(Vec::new())
-    }
-
-    fn parse_html_results(&self, html: &str) -> Result<Vec<BingWebResult>> {
-        let mut results = Vec::new();
-        let document = scraper::Html::parse_document(html);
-
-        // Bing specific selectors
-        let title_selectors = vec!["h2", ".b_title", "li[class*='b_algo'] h2"];
-        for selector_str in title_selectors {
-            if let Ok(selector) = scraper::Selector::parse(selector_str) {
-                for element in document.select(&selector) {
-                    let name = element.text().collect::<Vec<_>>().join(" ");
-                    if name.is_empty() {
-                        continue;
-                    }
-
-                    // Try to find URL
-                    if let Some(parent) = element.parent() {
-                        for child in parent.children() {
-                            if let Some(link) = child.value().as_element() {
-                                if link.name() == "a" {
-                                    if let Some(url) = link.attr("href") {
-                                        let snippet = String::new();
-                                        results.push(BingWebResult {
-                                            name: name.clone(),
-                                            url: url.to_string(),
-                                            snippet,
-                                            displayUrl: url.to_string(),
-                                        });
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                if !results.is_empty() {
-                    break;
-                }
-            }
-        }
-
-        Ok(results)
     }
 }
 
