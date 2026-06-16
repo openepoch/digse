@@ -12,8 +12,13 @@ resolver = "2"
 version = "0.0.1"
 edition = "2021"
 authors = ["digse contributors"]
-license = "MIT OR Apache-2.0"
+license = "Apache-2.0"
 repository = "https://github.com/digse/digse"
+description = "A lightweight, privacy-focused metasearch engine CLI written in Rust"
+categories = ["command-line-utilities", "web-programming::http-client", "parser-implementations"]
+keywords = ["search", "metasearch", "cli", "privacy", "rust"]
+readme = "README.md"
+homepage = "https://github.com/digse/digse#readme"
 
 [workspace.dependencies]
 # Async runtime
@@ -66,3 +71,10 @@ async-trait = "0.1"
 
 # Home directory
 home = "0.5"
+
+# Internal workspace crates
+digse-core = { path = "crates/core", version = "0.0.1" }
+digse-http = { path = "crates/http", version = "0.0.1" }
+digse-parser = { path = "crates/parser", version = "0.0.1" }
+digse-engines = { path = "crates/engines", version = "0.0.1" }
+digse = { path = "crates/cli", version = "0.0.1" }

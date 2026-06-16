@@ -4,6 +4,12 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
+description.workspace = true
+categories.workspace = true
+keywords.workspace = true
+readme.workspace = true
+homepage.workspace = true
+repository.workspace = true
 
 [lib]
 name = "digse"
@@ -14,10 +20,10 @@ name = "digse"
 path = "src/main.rs"
 
 [dependencies]
-digse-core = { path = "../core" }
-digse-engines = { path = "../engines" }
-digse-http = { path = "../http" }
-digse-parser = { path = "../parser" }
+digse-core = { workspace = true }
+digse-engines = { workspace = true }
+digse-http = { workspace = true }
+digse-parser = { workspace = true }
 
 clap = { workspace = true }
 serde = { workspace = true }

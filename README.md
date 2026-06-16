@@ -337,7 +337,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-Licensed under MIT OR Apache-2.0.
+Licensed under Apache-2.0.
 
 ## Disclaimer
 
