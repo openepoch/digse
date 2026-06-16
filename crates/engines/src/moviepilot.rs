@@ -70,8 +70,6 @@ struct MoviepilotItemDiscover {
     #[serde(default)]
     summary: Option<String>,
     #[serde(default)]
-    meta_short: Option<String>,
-    #[serde(default)]
     image: Option<String>,
     #[serde(default)]
     image_filename: Option<String>,

@@ -16,7 +16,6 @@ pub struct GooglePlayEngine {
     metadata: EngineMetadata,
     client: reqwest::Client,
     play_categ: String,
-    result_type: ResultType,
 }
 
 impl GooglePlayEngine {
@@ -25,16 +24,14 @@ impl GooglePlayEngine {
     }
 
     pub fn with_categ(categ: &str) -> Self {
-        let (category, description, result_type) = match categ {
+        let (category, description) = match categ {
             "movies" => (
                 EngineCategory::Videos,
                 "Google Play Movies - movies & TV search.".to_string(),
-                ResultType::Videos,
             ),
             _ => (
                 EngineCategory::IT,
                 "Google Play Apps - Android app search.".to_string(),
-                ResultType::IT,
             ),
         };
         let metadata = EngineMetadata {
@@ -54,7 +51,6 @@ impl GooglePlayEngine {
             metadata,
             client,
             play_categ: categ.to_string(),
-            result_type,
         }
     }
 

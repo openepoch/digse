@@ -134,8 +134,6 @@ struct YtResponse {
 
 #[derive(Debug, Deserialize)]
 struct YtError {
-    #[serde(default)]
-    message: String,
 }
 
 #[derive(Debug, Deserialize)]

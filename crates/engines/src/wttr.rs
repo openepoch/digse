@@ -97,8 +97,6 @@ impl WttrEngine {
 struct WttrResponse {
     #[serde(default)]
     current_condition: Vec<WttrCurrent>,
-    #[serde(default)]
-    weather: Vec<WttrDay>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -122,14 +120,6 @@ struct WttrCurrent {
     wind_dir_degree: String,
     #[serde(default)]
     cloudcover: String,
-    #[serde(default)]
-    pressure: String,
-}
-
-#[derive(Debug, Deserialize)]
-struct WttrDay {
-    #[serde(default)]
-    date: String,
 }
 
 /// Map a WWO weather code to a human-readable condition (subset from upstream).

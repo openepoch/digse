@@ -19,6 +19,7 @@ pub struct GitLabEngine {
 }
 
 #[derive(Debug, Deserialize, Default)]
+#[allow(dead_code)]
 struct GitLabProject {
     #[serde(default)]
     name: String,

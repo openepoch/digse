@@ -36,10 +36,6 @@ struct UnsplashPhoto {
     urls: UnsplashUrls,
     #[serde(default)]
     user: UnsplashUser,
-    #[serde(default)]
-    width: Option<i64>,
-    #[serde(default)]
-    height: Option<i64>,
 }
 
 #[derive(Debug, Deserialize, Default)]
@@ -53,19 +49,13 @@ struct UnsplashUrls {
     #[serde(default)]
     raw: Option<String>,
     #[serde(default)]
-    full: Option<String>,
-    #[serde(default)]
     regular: Option<String>,
-    #[serde(default)]
-    small: Option<String>,
     #[serde(default)]
     thumb: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Default)]
 struct UnsplashUser {
-    #[serde(default)]
-    username: String,
     #[serde(default)]
     name: String,
 }

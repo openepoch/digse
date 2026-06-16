@@ -42,8 +42,6 @@ struct MetadataItem {
     original_image: OriginalImage,
     #[serde(default)]
     thumbnail: Thumbnail,
-    #[serde(default)]
-    gsa: Option<Gsa>,
 }
 
 #[derive(Debug, Deserialize, Default)]
@@ -55,8 +53,6 @@ struct ImageResult {
     #[serde(default)]
     site_title: String,
     #[serde(default)]
-    freshness_date: Option<String>,
-    #[serde(default)]
     iptc: Option<Iptc>,
 }
 
@@ -64,8 +60,6 @@ struct ImageResult {
 struct Iptc {
     #[serde(default)]
     creator: Vec<String>,
-    #[serde(default)]
-    copyright_notice: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Default)]
@@ -88,12 +82,6 @@ struct OriginalImage {
 struct Thumbnail {
     #[serde(default)]
     url: String,
-}
-
-#[derive(Debug, Deserialize, Default)]
-struct Gsa {
-    #[serde(default)]
-    file_size: Option<String>,
 }
 
 impl GoogleImagesEngine {
